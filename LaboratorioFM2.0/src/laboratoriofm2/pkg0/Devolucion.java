@@ -56,8 +56,7 @@ public class Devolucion extends javax.swing.JInternalFrame {
     
     if(Inicio.before(Fin)){
                 lbres.setText("Vencido");
-                btnCobrar.setEnabled(true);
-                txt_NuevaM.setEnabled(true);
+                
             }else{
                 lbres.setText("A tiempo");
             }
@@ -298,11 +297,13 @@ public class Devolucion extends javax.swing.JInternalFrame {
                     if(verificacion.equals("Vencido")){
                         btnCobrar.setEnabled(true);
                         txt_NuevaM.setEnabled(true);
+                         btnIngresar.setEnabled(false);
                     }else{
                         txt_Dev.setText("");
                         cbox_Renta.setSelectedIndex(0);
-                        date_Fecha.setDateFormatString("");
+                        txt_Cliente.setText("");
                         
+
                         btnIngresar.setEnabled(false);
                        
                     }
@@ -343,8 +344,6 @@ public class Devolucion extends javax.swing.JInternalFrame {
                 if(rs.next()){
                     txt_Cliente.setText(rs.getString("Tarjeta_C"));
                     date_V.setDate(rs.getDate("Fecha_Vencimiento"));
-                    
-                } else {
                     
                 }
                 
@@ -416,8 +415,7 @@ public class Devolucion extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 txt_Dev.setText("");
                 cbox_Renta.setSelectedIndex(0);
-                date_Fecha.setDateFormatString("");
-                date_V.setDateFormatString("");
+               
                 btnIngresar.setEnabled(false);
                 btnCobrar.setEnabled(false);
                 txt_NuevaM.setEnabled(false);
