@@ -5,15 +5,21 @@
  */
 package laboratoriofm2.pkg0;
 
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.demo.DateChooserPanel;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
+
 
 /**
  *
@@ -32,19 +38,40 @@ public class Devolucion extends javax.swing.JInternalFrame {
             PreparedStatement pst = cn.prepareStatement("select Codigo_R from Rentas ");
             ResultSet rs = pst.executeQuery();
             
-          
-            
             cbox_Renta.addItem("Seleccione una opción");
             while(rs.next()){
             cbox_Renta.addItem(rs.getString("Codigo_R"));
             }
-  
+ 
         }catch (Exception e){
 
         }
-        
+          
+    }
+    
+    public void compararfechas(JDateChooser fechaI, JDateChooser fechaF){
+    if(fechaI.getDate()!=null && fechaF.getDate()!=null){
+    Calendar Inicio=fechaI.getCalendar();
+    Calendar Fin=fechaF.getCalendar();
+    
+    if(Inicio.before(Fin)){
+                lbres.setText("Vencido");
+                btnCobrar.setEnabled(true);
+                txt_NuevaM.setEnabled(true);
+            }else{
+                lbres.setText("A tiempo");
+            }
+    
+    }
         
     }
+    
+     public static Date Fecha(DateChooserPanel jDatefecha){
+        java.util.Date date = jDatefecha.getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        return fecha;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +83,7 @@ public class Devolucion extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txt_Dev = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -63,11 +91,21 @@ public class Devolucion extends javax.swing.JInternalFrame {
         date_Fecha = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
-        lb_Venc = new javax.swing.JLabel();
         lbres = new javax.swing.JLabel();
         btnComparar = new javax.swing.JButton();
+        date_V = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        txt_Cliente = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txt_M = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txt_NuevaM = new javax.swing.JTextField();
+        btnCobrar = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
+
+        jTextField1.setText("jTextField1");
 
         setClosable(true);
         setIconifiable(true);
@@ -96,8 +134,7 @@ public class Devolucion extends javax.swing.JInternalFrame {
             }
         });
 
-        lb_Venc.setText("Vencimiento");
-
+        lbres.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbres.setText("resultado");
 
         btnComparar.setText("Comparar");
@@ -107,34 +144,89 @@ public class Devolucion extends javax.swing.JInternalFrame {
             }
         });
 
+        date_V.setDateFormatString("yyyy-MM-dd H:mm");
+        date_V.setEnabled(false);
+
+        jLabel5.setText("Tarjeta Cliente");
+
+        txt_Cliente.setEnabled(false);
+
+        jLabel6.setText("Mora");
+
+        txt_M.setEnabled(false);
+        txt_M.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_MActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Vencimiento");
+
+        jLabel8.setText("Mora a Cobrar");
+
+        txt_NuevaM.setEnabled(false);
+        txt_NuevaM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_NuevaMActionPerformed(evt);
+            }
+        });
+
+        btnCobrar.setText("Guardar Cobro");
+        btnCobrar.setEnabled(false);
+        btnCobrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCobrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(date_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_Dev)
-                    .addComponent(cbox_Renta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1)
+                        .addGap(27, 27, 27)
+                        .addComponent(txt_Dev, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8))
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbres)
-                            .addComponent(lb_Venc))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnComparar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIngresar)
-                        .addGap(27, 27, 27))))
+                            .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txt_NuevaM, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(btnCobrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(date_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(2, 2, 2)
+                                            .addComponent(cbox_Renta, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel7))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txt_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel6))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(date_V, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txt_M)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(btnComparar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lbres, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,82 +235,119 @@ public class Devolucion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_Dev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbox_Renta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_Venc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbres)
-                .addGap(5, 5, 5)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_M, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(date_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnIngresar)
-                        .addComponent(btnComparar)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbox_Renta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7))
+                            .addComponent(date_V, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(date_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnComparar)
+                                .addComponent(lbres)))))
+                .addGap(18, 18, 18)
+                .addComponent(btnIngresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_NuevaM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCobrar))
+                .addGap(58, 58, 58))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        try{                                            
-            String date = date_Fecha.getDateFormatString();
-            java.util.Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                                                   
+            java.util.Date fecha=date_Fecha.getDate();
+            long d=fecha.getTime();
+            java.sql.Date date = new java.sql.Date(d);
+              
+                
+                
+                try{
+                    String ID = txt_Cliente.getText().trim();
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
+                    
+                    PreparedStatement pst = cn.prepareStatement("insert into Devoluciones values(?,?,?)");
+                    
+                    pst.setString(1, txt_Dev.getText().trim());
+                    pst.setString(2, cbox_Renta.getSelectedItem().toString());
+                    pst.setString(3, date.toString());
+                    pst.executeUpdate();
+                    
+                    
+                    JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    String verificacion=lbres.getText();
+                    if(verificacion.equals("Vencido")){
+                        btnCobrar.setEnabled(true);
+                        txt_NuevaM.setEnabled(true);
+                    }else{
+                        txt_Dev.setText("");
+                        cbox_Renta.setSelectedIndex(0);
+                        date_Fecha.setDateFormatString("");
+                        
+                        btnIngresar.setEnabled(false);
+                       
+                    }
+                    
+                    
+                    
+                    
+                    
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(this, "¡ERROR DE REGISTRO!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                // TODO add your handling code here:
+                
+                
+                
+                // TODO add your handling code here:
             
             
-            try{
-                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
-                
-                PreparedStatement pst = cn.prepareStatement("insert into Devoluciones values(?,?,?)");
-                
-                pst.setString(1, txt_Dev.getText().trim());
-                pst.setString(2, cbox_Renta.getSelectedItem().toString());
-                pst.setString(3, date);
-                
-                
-                pst.executeUpdate();
-                
-                
-                JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                txt_Dev.setText("");
-                cbox_Renta.setSelectedIndex(0);
-                lb_Venc.setText("Vencimiento");
-                
-                
-            }catch (Exception e){
-                JOptionPane.showMessageDialog(this, "¡ERROR DE REGISTRO!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
             
             // TODO add your handling code here:
-        }catch (ParseException ex){
-            Logger.getLogger(Devolucion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
 
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void cbox_RentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_RentaActionPerformed
-        
+                   
             
             try{
                 Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
-                PreparedStatement pst = cn.prepareStatement("select Fecha_Vencimiento from Rentas where Codigo_R = ?");
+                PreparedStatement pst = cn.prepareStatement("select Tarjeta_C , Fecha_Vencimiento from Rentas where Codigo_R = ?");
                 pst.setString(1, cbox_Renta.getSelectedItem().toString());
                 
                 ResultSet rs = pst.executeQuery();
                 
                 if(rs.next()){
-                    lb_Venc.setText(rs.getString("Fecha_Vencimiento"));
-                   
-                    
+                    txt_Cliente.setText(rs.getString("Tarjeta_C"));
+                    date_V.setDate(rs.getDate("Fecha_Vencimiento"));
                     
                 } else {
                     
                 }
+                
                 
             }catch (Exception e){
                 
@@ -235,41 +364,94 @@ public class Devolucion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbox_RentaActionPerformed
 
     private void btnCompararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararActionPerformed
-        
-        try {
-            String date = date_Fecha.getDateFormatString();
-            java.util.Date date2 = new SimpleDateFormat("yyyy-MM-dd H:mm").parse(date);
-            
-            String date_ = lb_Venc.getText();
-            java.util.Date date_2 = new SimpleDateFormat("yyyy-MM-dd H:mm").parse(date_);
-            boolean res= date2.before(date_2);
-            
-            if(res==true){
-                lbres.setText("Vencido");
-            }else{
-                lbres.setText("A tiempo");
+
+        compararfechas(date_V,date_Fecha);
+        btnIngresar.setEnabled(true);
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+                
+                PreparedStatement pst2 = cn.prepareStatement("select Mora_Acum from Clientes where Tarjeta_C = ?");
+                pst2.setString(1, txt_Cliente.getText().trim());
+                ResultSet rs = pst2.executeQuery();
+
+            if(rs.next()){
+            txt_M.setText(rs.getString("Mora_Acum"));
+           
+         
+            } else {
+                
             }
-            
-            btnIngresar.setEnabled(true);
-            // TODO add your handling code here:
-        } catch (ParseException ex) {
-            Logger.getLogger(Devolucion.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }catch (Exception e){
+
         }
-        
     }//GEN-LAST:event_btnCompararActionPerformed
+
+    private void txt_MActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_MActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_MActionPerformed
+
+    private void txt_NuevaMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NuevaMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NuevaMActionPerformed
+
+    private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
+
+            try{
+                String ID = txt_Cliente.getText().trim();
+                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
+           
+                String mora_=txt_M.getText().trim();
+                double mora=Double.parseDouble(mora_);
+                String moraN_=txt_NuevaM.getText().trim();
+                double moraN=Double.parseDouble(moraN_);
+                double total=mora+moraN;
+                String total_=String.valueOf(total);
+                
+                PreparedStatement pst3 = cn.prepareStatement("update Clientes set Mora_Acum = ? where Tarjeta_C = " + ID);
+                pst3.setString(1, total_);
+                 pst3.executeUpdate();
+                
+                
+                JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                txt_Dev.setText("");
+                cbox_Renta.setSelectedIndex(0);
+                date_Fecha.setDateFormatString("");
+                date_V.setDateFormatString("");
+                btnIngresar.setEnabled(false);
+                btnCobrar.setEnabled(false);
+                txt_NuevaM.setEnabled(false);
+                
+                
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(this, "¡ERROR DE REGISTRO!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCobrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCobrar;
     private javax.swing.JButton btnComparar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JComboBox<String> cbox_Renta;
     private com.toedter.calendar.JDateChooser date_Fecha;
+    private com.toedter.calendar.JDateChooser date_V;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel lb_Venc;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbres;
+    private javax.swing.JTextField txt_Cliente;
     private javax.swing.JTextField txt_Dev;
+    private javax.swing.JTextField txt_M;
+    private javax.swing.JTextField txt_NuevaM;
     // End of variables declaration//GEN-END:variables
 }
