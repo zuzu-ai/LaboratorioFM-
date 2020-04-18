@@ -22,7 +22,7 @@ public class Mantenimiento_Juegos extends javax.swing.JInternalFrame {
     public Mantenimiento_Juegos() {
         initComponents();
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select Nombre_A from Genero_A where CTipo_A=2");
             ResultSet rs = pst.executeQuery();
             
@@ -289,7 +289,7 @@ public class Mantenimiento_Juegos extends javax.swing.JInternalFrame {
 
     
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("insert into Articulos values(?,?,?,?,?,?,?,?,?,?)");
 
             pst.setString(1, "0");
@@ -332,7 +332,7 @@ public class Mantenimiento_Juegos extends javax.swing.JInternalFrame {
             return;
         }
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from Articulos where Codigo_A = ? and CTipo_A=2");
             pst.setString(1, txtbuscado.getText().trim());
 
@@ -362,7 +362,7 @@ public class Mantenimiento_Juegos extends javax.swing.JInternalFrame {
 
     private void cbox_TiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_TiendaActionPerformed
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select Codigo_T from Tiendas where Nombre_T= ?");
             pst.setString(1, cbox_Tienda.getSelectedItem().toString());
 
@@ -385,7 +385,7 @@ public class Mantenimiento_Juegos extends javax.swing.JInternalFrame {
     private void cbox_ClasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_ClasActionPerformed
 
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select CClas_A from Clas_A where Nombre_A= ?");
             pst.setString(1, cbox_Clas.getSelectedItem().toString());
 
@@ -407,7 +407,7 @@ public class Mantenimiento_Juegos extends javax.swing.JInternalFrame {
 
     private void cbox_GeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_GeneroActionPerformed
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select CGenero_A from Genero_A where Nombre_A= ?");
             pst.setString(1, cbox_Genero.getSelectedItem().toString());
 
@@ -429,7 +429,7 @@ public class Mantenimiento_Juegos extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("delete from Articulos where Codigo_A = ?");
 
             pst.setString(1, txtbuscado.getText().trim());
@@ -464,7 +464,7 @@ try {
 try {
             String codigo = txtbuscado.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("update articulos set Nombre_A = ? , Autor_A= ? , CGenero_A=? , Clasificacion_A= ? , Duracion_A= ?, Precio_A= ?, Existencia=?, Tienda=? where Codigo_A = " + codigo);
       
             
