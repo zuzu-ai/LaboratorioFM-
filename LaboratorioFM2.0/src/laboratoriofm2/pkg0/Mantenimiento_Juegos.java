@@ -428,7 +428,7 @@ public class Mantenimiento_Juegos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbox_GeneroActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-try {
+    try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
             PreparedStatement pst = cn.prepareStatement("delete from Articulos where Codigo_A = ?");
 

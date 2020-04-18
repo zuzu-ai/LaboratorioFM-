@@ -245,7 +245,7 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
          try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
-            PreparedStatement pst = cn.prepareStatement("select * from clientes where Tarjeta_C = ?");
+            PreparedStatement pst = cn.prepareStatement("select * from Clientes where Tarjeta_C = ?");
             pst.setString(1, txtbuscado.getText().trim());
             
             ResultSet rs = pst.executeQuery();
@@ -272,7 +272,7 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
          try {
-             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labFM", "root", "Polo.2015");
+             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
             PreparedStatement pst = cn.prepareStatement("delete from clientes where Tarjeta_C = ?");
             
             pst.setString(1, txtbuscado.getText().trim());

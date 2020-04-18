@@ -338,7 +338,7 @@ String buscar = txtbuscado.getText().trim();
         }
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
-            PreparedStatement pst = cn.prepareStatement("select * from Articulos where Codigo_A = ? and CTipo_A=2");
+            PreparedStatement pst = cn.prepareStatement("select * from Articulos where Codigo_A = ? and CTipo_A=1");
             pst.setString(1, txtbuscado.getText().trim());
 
             ResultSet rs = pst.executeQuery();
