@@ -25,7 +25,7 @@ public class Mantenimiento_Peliculas extends javax.swing.JInternalFrame {
     public Mantenimiento_Peliculas() {
         initComponents();
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select Nombre_A from Genero_A where CTipo_A=1");
             ResultSet rs = pst.executeQuery();
             
@@ -288,7 +288,7 @@ public class Mantenimiento_Peliculas extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("insert into Articulos values(?,?,?,?,?,?,?,?,?,?)");
 
             pst.setString(1, "0");
@@ -337,8 +337,8 @@ String buscar = txtbuscado.getText().trim();
             return;
         }
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
-            PreparedStatement pst = cn.prepareStatement("select * from Articulos where Codigo_A = ? and CTipo_A=2");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
+            PreparedStatement pst = cn.prepareStatement("select * from Articulos where Codigo_A = ? and CTipo_A=1");
             pst.setString(1, txtbuscado.getText().trim());
 
             ResultSet rs = pst.executeQuery();
@@ -370,7 +370,7 @@ String buscar = txtbuscado.getText().trim();
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
       try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("delete from Articulos where Codigo_A = ?");
 
             pst.setString(1, txtbuscado.getText().trim());
@@ -406,7 +406,7 @@ String buscar = txtbuscado.getText().trim();
 try {
             String codigo = txtbuscado.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("update articulos set Nombre_A = ? , Autor_A= ? , CGenero_A=? , Clasificacion_A= ? , Duracion_A= ?, Precio_A= ?, Existencia=?, Tienda=? where Codigo_A = " + codigo);
       
             
@@ -447,7 +447,7 @@ try {
 
     private void cbox_GeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_GeneroActionPerformed
 try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select CGenero_A from Genero_A where Nombre_A= ?");
             pst.setString(1, cbox_Genero.getSelectedItem().toString());
 
@@ -471,7 +471,7 @@ try{
     private void cbox_ClasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_ClasActionPerformed
 
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select CClas_A from Clas_A where Nombre_A= ?");
             pst.setString(1, cbox_Clas.getSelectedItem().toString());
 
@@ -495,7 +495,7 @@ try{
 
     private void cbox_TiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_TiendaActionPerformed
 try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select Codigo_T from Tiendas where Nombre_T= ?");
             pst.setString(1, cbox_Tienda.getSelectedItem().toString());
 
