@@ -50,7 +50,7 @@ public class Bono extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Actualizar");
+        jButton2.setText("Actualizar...");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -70,9 +70,8 @@ public class Bono extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtBono, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtRenta_Acum, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                                .addComponent(txtbuscado)))))
+                            .addComponent(txtRenta_Acum, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                            .addComponent(txtbuscado))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,7 +123,7 @@ public class Bono extends javax.swing.JFrame {
         String bonoAcum = txtBono.getText().trim();
         int bonoAcum1 = Integer.parseInt(bonoAcum);
 
-        if (rentaAcum1 > 49.99) {
+        if (rentaAcum1 >= 50) {
             bonoAcum1 = bonoAcum1 + 1;
             rentaAcum1 = rentaAcum1 - 50;
         } else {
