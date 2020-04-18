@@ -16,7 +16,7 @@ public class NewMDIApplication extends javax.swing.JFrame {
     private Mantenimiento_Juegos ventanajuegos;
     private Mantenimiento_Peliculas ventanapeliculas;
     private Devolucion ventanadev;
-    //private Renta ventanarenta;
+    private Rentas ventanarenta;
     private Bonos ventanabonos;
     
     /**
@@ -204,8 +204,8 @@ public class NewMDIApplication extends javax.swing.JFrame {
 
     private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
         // TODO add your handling code here:
-        //ventanarentas=new Rentas();
-        //jDesktopPane1.add(ventanarentas);
+        ventanarenta=new Rentas();
+        jDesktopPane1.add(ventanarenta);
     }//GEN-LAST:event_cutMenuItemActionPerformed
 
     private void btnDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevActionPerformed
