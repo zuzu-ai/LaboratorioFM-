@@ -96,7 +96,7 @@ public class Bono extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labFM", "root", "Rochi1523");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from clientes where Tarjeta_C = ?");
             pst.setString(1, txtbuscado.getText().trim());
 
@@ -135,7 +135,7 @@ public class Bono extends javax.swing.JFrame {
         try {
             String ID = txtbuscado.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labFM", "root", "Rochi1523");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("update clientes set Renta_Acum = ?, Bonos_Acum = ? where Tarjeta_C =" + ID);
 
             pst.setString(1, rentaAcum2);
