@@ -16,8 +16,8 @@ public class NewMDIApplication extends javax.swing.JFrame {
     private Mantenimiento_Juegos ventanajuegos;
     private Mantenimiento_Peliculas ventanapeliculas;
     private Devolucion ventanadev;
-    private Renta ventanarenta;
-    private Bono ventanabonos;
+    //private Renta ventanarenta;
+    private Bonos ventanabonos;
     
     /**
      * Creates new form NewMDIApplication
@@ -204,8 +204,8 @@ public class NewMDIApplication extends javax.swing.JFrame {
 
     private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
         // TODO add your handling code here:
-        ventanarentas=new Rentas();
-        jDesktopPane1.add(ventanarentas);
+        //ventanarentas=new Rentas();
+        //jDesktopPane1.add(ventanarentas);
     }//GEN-LAST:event_cutMenuItemActionPerformed
 
     private void btnDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevActionPerformed
@@ -216,7 +216,7 @@ public class NewMDIApplication extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        ventanabonos=new Bono();
+        ventanabonos=new Bonos();
         jDesktopPane1.add(ventanabonos);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
