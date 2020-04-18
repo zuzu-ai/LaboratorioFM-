@@ -210,7 +210,7 @@ public class Mantenimiento_Empleados extends javax.swing.JInternalFrame {
             String ID = txtbuscado.getText().trim();
             
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "6182");
-            PreparedStatement pst = cn.prepareStatement("update empleados set Nombre_E = ?, COdigo_T=?, Estado_E = ? where Codigo_E = " + ID);
+            PreparedStatement pst = cn.prepareStatement("update empleados set Nombre_E = ?, Codigo_T=?, Estado_E = ? where Codigo_E = " + ID);
             
             pst.setString(1, txtNombre_E.getText().trim());
              pst.setString(2, lbTienda.getText().trim());

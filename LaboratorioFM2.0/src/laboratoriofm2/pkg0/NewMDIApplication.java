@@ -16,6 +16,8 @@ public class NewMDIApplication extends javax.swing.JFrame {
     private Mantenimiento_Juegos ventanajuegos;
     private Mantenimiento_Peliculas ventanapeliculas;
     private Devolucion ventanadev;
+    private Renta ventanarenta;
+    private Bono ventanabonos;
     
     /**
      * Creates new form NewMDIApplication
@@ -43,6 +45,7 @@ public class NewMDIApplication extends javax.swing.JFrame {
         btnEmpleados = new javax.swing.JMenuItem();
         btnClientes = new javax.swing.JMenuItem();
         btnOperaciones = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         cutMenuItem = new javax.swing.JMenuItem();
         btnDev = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -109,6 +112,14 @@ public class NewMDIApplication extends javax.swing.JFrame {
 
         btnOperaciones.setMnemonic('e');
         btnOperaciones.setText("Operaciones");
+
+        jMenuItem1.setText("Bonos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        btnOperaciones.add(jMenuItem1);
 
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Rentas");
@@ -193,6 +204,8 @@ public class NewMDIApplication extends javax.swing.JFrame {
 
     private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
         // TODO add your handling code here:
+        ventanarentas=new Rentas();
+        jDesktopPane1.add(ventanarentas);
     }//GEN-LAST:event_cutMenuItemActionPerformed
 
     private void btnDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevActionPerformed
@@ -200,6 +213,12 @@ public class NewMDIApplication extends javax.swing.JFrame {
         jDesktopPane1.add(ventanadev);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDevActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        ventanabonos=new Bono();
+        jDesktopPane1.add(ventanabonos);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,6 +270,7 @@ public class NewMDIApplication extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
