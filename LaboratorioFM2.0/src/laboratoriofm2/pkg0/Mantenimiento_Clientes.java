@@ -182,7 +182,7 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
          try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labFM", "root", "6182");
             //localhost es 127.0.0.1
             PreparedStatement pst = cn.prepareStatement("insert into clientes values(?,?,?,?,?,?,?,?,?)");
             
@@ -216,7 +216,7 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
         try {
             String ID = txtbuscado.getText().trim();
             
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("update clientes set Nombre_C = ?, Dpi_C = ?, Tel_C = ?, Direccion_C = ?, Correo_C = ? where Tarjeta_C =" + ID);
             
             
@@ -244,7 +244,7 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
          try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from Clientes where Tarjeta_C = ?");
             pst.setString(1, txtbuscado.getText().trim());
             
@@ -272,7 +272,7 @@ public class Mantenimiento_Clientes extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
          try {
-             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("delete from clientes where Tarjeta_C = ?");
             
             pst.setString(1, txtbuscado.getText().trim());

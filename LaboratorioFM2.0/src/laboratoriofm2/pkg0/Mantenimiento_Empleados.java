@@ -22,7 +22,7 @@ public class Mantenimiento_Empleados extends javax.swing.JInternalFrame {
         initComponents();
         
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
          
             
              PreparedStatement pst3 = cn.prepareStatement("select Nombre_T from Tiendas");
@@ -181,7 +181,7 @@ public class Mantenimiento_Empleados extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "6182");
             //localhost es 127.0.0.1
             PreparedStatement pst = cn.prepareStatement("insert into empleados values(?,?,?,?)");
             
@@ -209,7 +209,7 @@ public class Mantenimiento_Empleados extends javax.swing.JInternalFrame {
         try {
             String ID = txtbuscado.getText().trim();
             
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("update empleados set Nombre_E = ?, COdigo_T=?, Estado_E = ? where Codigo_E = " + ID);
             
             pst.setString(1, txtNombre_E.getText().trim());
@@ -235,7 +235,7 @@ public class Mantenimiento_Empleados extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from empleados where Codigo_E = ?");
             pst.setString(1, txtbuscado.getText().trim());
             
@@ -260,7 +260,7 @@ public class Mantenimiento_Empleados extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         try {
-             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "Polo.2015");
+             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/labfm", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("delete from empleados where Codigo_E = ?");
             
             pst.setString(1, txtbuscado.getText().trim());
@@ -282,7 +282,7 @@ public class Mantenimiento_Empleados extends javax.swing.JInternalFrame {
 
     private void cbox_TiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_TiendaActionPerformed
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/LabFM", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select Codigo_T from Tiendas where Nombre_T= ?");
             pst.setString(1, cbox_Tienda.getSelectedItem().toString());
 
